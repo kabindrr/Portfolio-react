@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export const Footer = () => {
+  const [scrollYPosition, setScrollYPosition] = useState(0);
+  const handleOnScrollY = () => {
+    setScrollYPosition(window.scrollY);
+  };
+
+  useEffect(() => {
+    //end of the render, run following code
+    window.addEventListener("scroll", handleOnScrollY);
+    //clean up the events
+    return () => {
+      window.removeEventListener("scroll", handleOnScrollY);
+    };
+  }, []);
   return (
     <div>
       {" "}
@@ -61,9 +74,11 @@ export const Footer = () => {
           &copy; Copy Right All reserved 2024 || Made by Kabindra 🚀🚀
         </div>
       </footer>
-      <a href="#NavBar" className="flex goUp">
-        <i className="fa-solid fa-angle-up"></i>
-      </a>
+      {scrollYPosition > 800 && (
+        <a href="#NavBar" className="flex goUp">
+          <i className="fa-solid fa-angle-up"></i>
+        </a>
+      )}
     </div>
   );
 };

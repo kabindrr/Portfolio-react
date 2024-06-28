@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 export const NavBar = () => {
   const [slideMenu, setSlideMenu] = useState(false);
+
   return (
     <div>
       <header>
